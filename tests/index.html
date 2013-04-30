@@ -2,8 +2,14 @@
 <html>
 <head>
     <title>Ellrion's Date Picker JQuery plugin</title>
+    <script type="text/javascript" src="http//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="/elldatepicker.js"></script>
     <link rel="stylesheet" href="/css/simple.css"/>
+    <script type="text/javascript">
+        $(function(){
+            $('input[data-toggle="datepicker"]').ellDatepicker();
+        });
+    </script>
 </head>
 <body>
     <input type="text" data-toggle="datepicker" />
