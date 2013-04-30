@@ -10,7 +10,7 @@ table.elldatepicker {
     width: auto;
 }
 table.elldatepicker th {
-    background: #797979;
+    background: rgb(209, 209, 209);
     color: #fff;
     font-weight: bold;
     padding: 3px 5px;
@@ -27,7 +27,7 @@ table.elldatepicker .elldtp-btn {
     font-size: 12px;
     cursor: pointer;
     display: block;
-    color: #7CB842;
+    color: #2f73cd;
     font-weight: bold;
 }
 table.elldatepicker span.elldtp-nextMonth,
@@ -61,24 +61,24 @@ table.elldatepicker input[name="elldtpMinute"]
     vertical-align: middle;
 }
 table.elldatepicker td.elldtp-hover{
-    background: #E0FF97;
+    background: rgb(151, 218, 255);
     cursor: pointer;
 }
 table.elldatepicker td.elldtp-chosen {
     background: #7CB842;
-    color: #E0FF97;
+    color: rgb(151, 218, 255);
     font-weight: bold;
 }
 table.elldatepicker td.elldtp-chosen.elldtp-hover {
-    background: #96c458;
+    background: rgb(88, 118, 196);
     color: #fff;
 }
 table.elldatepicker td.elldtp-today {
-    color: #4E9E00;
+    color: #2f73cd;
     font-weight: bold;
 }
 table.elldatepicker td.elldtp-today.elldtp-chosen{
-    color: #E0FF97;
+    color: rgb(151, 218, 255);
     font-weight: bold;
 }
 table.elldatepicker td.elldtp-disabled, table.elldatepicker td.elldtp-disabled.elldtp-hover {
