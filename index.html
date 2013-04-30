@@ -18,6 +18,11 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://github.com/Ellrion/elldatepicker.git/elldatepicker.js"></script>
     <link rel="stylesheet" href="https://github.com/Ellrion/elldatepicker.git/css/simple.css"/>
+    <script type="text/javascript">
+        $(function(){
+            $('input[data-toggle="datepicker"]').ellDatepicker();
+        });
+    </script>
   </head>
 
   <body>
@@ -33,8 +38,15 @@
       <div class="inner clearfix">
         <section id="main-content">
           <p>Пробный проект на гитхабе.<br/> JQuery плагин выбора даты.</p>
+          <code>
+            $(function(){
+              $('input[data-toggle="datepicker"]').ellDatepicker();
+            });
+          </code>
         </section>
-
+        <div>
+          <input type="text" data-toggle="datepicker" />
+        </div>
         <aside id="sidebar">
           <a href="https://github.com/Ellrion/elldatepicker/zipball/master" class="button">
             <small>Download</small>
