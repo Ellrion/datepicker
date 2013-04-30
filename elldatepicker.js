@@ -23,14 +23,14 @@
         function setupYearRange () {
             var startYear, endYear;
             // начальный год
-            if (opts.startdate.constructor == Date) {
-                startYear = opts.startdate.getFullYear();
-            } else if (opts.startdate) {
-                if (yearRegEx.test(opts.startdate)) {
-                    startYear = opts.startdate;
-                } else if (dateRegEx.test(opts.startdate)) {
-                    opts.startdate = new Date(opts.startdate);
-                    startYear = opts.startdate.getFullYear();
+            if (opts.startDate.constructor == Date) {
+                startYear = opts.startDate.getFullYear();
+            } else if (opts.startDate) {
+                if (yearRegEx.test(opts.startDate)) {
+                    startYear = opts.startDate;
+                } else if (dateRegEx.test(opts.startDate)) {
+                    opts.startDate = new Date(opts.startDate);
+                    startYear = opts.startDate.getFullYear();
                 } else {
                     startYear = today.getFullYear();
                 }
@@ -39,14 +39,14 @@
             }
             opts.startyear = startYear;
             // последний год
-            if (opts.enddate.constructor == Date) {
-                endYear = opts.enddate.getFullYear();
-            } else if (opts.enddate) {
-                if (yearRegEx.test(opts.enddate)) {
-                    endYear = opts.enddate;
-                } else if (dateRegEx.test(opts.enddate)) {
-                    opts.enddate = new Date(opts.enddate);
-                    endYear = opts.enddate.getFullYear();
+            if (opts.endDate.constructor == Date) {
+                endYear = opts.endDate.getFullYear();
+            } else if (opts.endDate) {
+                if (yearRegEx.test(opts.endDate)) {
+                    endYear = opts.endDate;
+                } else if (dateRegEx.test(opts.endDate)) {
+                    opts.endDate = new Date(opts.endDate);
+                    endYear = opts.endDate.getFullYear();
                 } else {
                     endYear = today.getFullYear();
                 }
@@ -109,7 +109,7 @@
                 '</td>'+
                 '<td><span class="elldtp-ok elldtp-btn">Ок</span></td>';
             var without_timepanel = '<td colspan="7"><span class="elldtp-ok elldtp-btn">Ок</span></td>';
-            $('tfoot', table).append('<tr>'+(opts.timepicker ? with_timepanel : without_timepanel)+'</tr>');
+            $('tfoot', table).append('<tr>'+(opts.timePicker ? with_timepanel : without_timepanel)+'</tr>');
             if (!opts.btnOk && opts.chooseOneClick) {
                 $('tfoot', table).hide();
             }
@@ -128,7 +128,7 @@
             if (activeDate && activeDate.constructor==Date) {
                 $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex = activeDate.getMonth();
                 $('select[name=elldtpYear]', datepicker).get(0).selectedIndex = Math.max(0, activeDate.getFullYear() - opts.startyear);
-                if (opts.timepicker) {
+                if (opts.timePicker) {
                     var mm=activeDate.getMinutes()
                     var hh=activeDate.getHours();
                     if (opts.minuteInterval) {
@@ -166,13 +166,13 @@
             // если февраль то делаем определение высокосного года http://en.wikipedia.org/wiki/Leap_year
             if (1 == month && ((year%4 == 0 && year%100 != 0) || year%400 == 0)) numdays = 29;
             // границы календаря
-            if (opts.startdate.constructor == Date) {
-                var startMonth = opts.startdate.getMonth();
-                var startDate = opts.startdate.getDate();
+            if (opts.startDate.constructor == Date) {
+                var startMonth = opts.startDate.getMonth();
+                var startDate = opts.startDate.getDate();
             }
-            if (opts.enddate.constructor == Date) {
-                var endMonth = opts.enddate.getMonth();
-                var endDate = opts.enddate.getDate();
+            if (opts.endDate.constructor == Date) {
+                var endMonth = opts.endDate.getMonth();
+                var endDate = opts.endDate.getDate();
             }
             //текущая выбранная дата
             chosendate = $.data(datepicker, 'ellDatepicker').chosenDate;
@@ -261,7 +261,7 @@
         function closeIt (el, datepicker, dateObj) {
             //дата передана, значит устанавливаем её
             if (dateObj && dateObj.constructor == Date) {
-                el.val($.fn.ellDatepicker.formatOutputDate(dateObj, opts.timepicker));
+                el.val($.fn.ellDatepicker.formatOutputDate(dateObj, opts.timePicker));
                 $.data(el.get(0), 'ellDatepicker', { hasDatepicker : false, chosenDate: dateObj });
             }
             //дата задана как пустая строка, значит затераем пораметры (clear)
@@ -282,11 +282,8 @@
 
         /*инициализация плагина*/
         return this.each(function() { // перебераем все элементы на которые "навешивают" плагин
-            //: Функции и переменные объявлены здесь создаются для каждого элемента набора.
-            //могут служить для запоминания состояния и управления последующим вызовом плагина,
-            //чтобы получить элемент DOM использовать $this
-            if ($(this).is('input') && 'text' == $(this).attr('type')) {//плагин работает только для input[type="text"]
-                var datepicker;
+            if ($(this).is('input') && 'text'==$(this).attr('type')) {//плагин работает только для input[type="text"]
+                var datePicker;
                 $.data($(this).get(0), 'ellDatepicker', { hasDatepicker : false });
                 // навешиваем обработчик клика. который будет открываться datapiker(если ещё не открыт)
                 $(this).bind(opts.eventsActivate, function (e) {
@@ -300,55 +297,55 @@
                             }
                         }
                         var data=$.data($this.get(0), 'ellDatepicker');
-                        // запоминаем что datepicker уже вызван
+                        // запоминаем что datePicker уже вызван
                         $.data($this.get(0), 'ellDatepicker', $.extend(data, { hasDatepicker : true}));
                         // генерация и вставка в DOM HTML кода календаря
-                        datepicker = newDatepickerHTML();
-                        $('body').append(datepicker);
+                        datePicker = newDatepickerHTML();
+                        $('body').append(datePicker);
                         // ранее выбранная дата выбирается по цепочке
                         //если написана в data секции вызывающего элемента
                         //или дата из строки вызывающего элемента
                         //или если передана в опциях
                         //или сегодняшняя дата
+                        var chosenDate = null;
                         if (data.chosenDate) {
-                            var chosendate = data.chosenDate;
+                            chosenDate = data.chosenDate;
                         } else {
-                            var initialDate = $.fn.ellDatepicker.formatInputDate($this.val(), opts.timepicker);
+                            var initialDate = $.fn.ellDatepicker.formatInputDate($this.val(), opts.timePicker);
                             if (initialDate && dateRegEx.test(initialDate)) {
-                                var chosendate = new Date(initialDate);
-                            } else if (opts.chosendate && opts.chosendate.constructor == Date) {
-                                var chosendate = opts.chosendate;
-                            } else if (opts.chosendate) {
-                                var chosendate = new Date(opts.chosendate);
+                                chosenDate = new Date(initialDate);
+                            } else if (opts.chosenDate && opts.chosenDate.constructor == Date) {
+                                chosenDate = opts.chosenDate;
+                            } else if (opts.chosenDate) {
+                                chosenDate = new Date(opts.chosenDate);
                             }
                         }
-                        if (chosendate)
-                            $.data(datepicker, 'ellDatepicker',{chosenDate:chosendate});
+                        $.data(datePicker, 'ellDatepicker', {'chosenDate': chosenDate} );
                         // нахождение и установка позиции календаря на странице
-                        var x = (isNaN(parseInt(opts.x,10)) ? 0 : parseInt(opts.x,10)) + $this.offset().left;//+$this.outerWidth()
-                        var y = (isNaN(parseInt(opts.y,10)) ? 0 : parseInt(opts.y,10)) + $this.offset().top;
-                        $(datepicker).css({ position: 'absolute', 'left': x.toFixed()+'px', 'top': y.toFixed()+'px' });
+                        var x = (isNaN(parseInt(opts.offsetX,10)) ? 0 : parseInt(opts.offsetX,10)) + $this.offset().left;//+$this.outerWidth()
+                        var y = (isNaN(parseInt(opts.offsetY,10)) ? 0 : parseInt(opts.offsetY,10)) + $this.offset().top;
+                        $(datePicker).css({ position: 'absolute', 'left': x.toFixed()+'px', 'top': y.toFixed()+'px' });
                         // навешивание обработчиков
-                        $('tbody td', datepicker).hover(
+                        $('tbody td', datePicker).hover(
                             function () { $(this).addClass('elldtp-hover'); },
                             function () { $(this).removeClass('elldtp-hover');}
                         );
-                        $('span.elldtp-cancel', datepicker).bind('click', function () { closeIt($this, datepicker); });
-                        $('span.elldtp-now', datepicker).bind('click', function () { closeIt($this, datepicker, new Date()); });
-                        $('span.elldtp-clear', datepicker).bind('click', function () { closeIt($this, datepicker, ''); });
-                        $('select', datepicker).bind('change', function () { loadMonth(null, $this, datepicker); });
-                        if (opts.timepicker) {
-                            $('span.elldtp-nextHour', datepicker).bind('mousedown', function(){nextHour(datepicker); return false;});
-                            $('span.elldtp-nextMinute', datepicker).bind('mousedown', function(){nextMinute(datepicker); return false;});
-                            $('span.elldtp-prevHour', datepicker).bind('mousedown', function(){prevHour(datepicker); return false;});
-                            $('span.elldtp-prevMinute', datepicker).bind('mousedown', function(){prevMinute(datepicker); return false;});
-                            $('input[name=elldtpHour]', datepicker)
+                        $('span.elldtp-cancel', datePicker).bind('click', function () { closeIt($this, datePicker); });
+                        $('span.elldtp-now', datePicker).bind('click', function () { closeIt($this, datePicker, new Date()); });
+                        $('span.elldtp-clear', datePicker).bind('click', function () { closeIt($this, datePicker, ''); });
+                        $('select', datePicker).bind('change', function () { loadMonth(null, $this, datePicker); });
+                        if (opts.timePicker) {
+                            $('span.elldtp-nextHour', datePicker).bind('mousedown', function(){nextHour(datePicker); return false;});
+                            $('span.elldtp-nextMinute', datePicker).bind('mousedown', function(){nextMinute(datePicker); return false;});
+                            $('span.elldtp-prevHour', datePicker).bind('mousedown', function(){prevHour(datePicker); return false;});
+                            $('span.elldtp-prevMinute', datePicker).bind('mousedown', function(){prevMinute(datePicker); return false;});
+                            $('input[name=elldtpHour]', datePicker)
                                 .bind('keydown', function(e){
                                     if (e.keyCode==38) {
-                                        nextHour(datepicker);
+                                        nextHour(datePicker);
                                         return false;
                                     } else if (e.keyCode==40) {
-                                        prevHour(datepicker);
+                                        prevHour(datePicker);
                                         return false;
                                     }
                                 })
@@ -357,13 +354,13 @@
                                     hh=isNaN(hh)?0:hh>23?23:(hh<0?0:hh);
                                     $(this).val(('0'+hh).substr(-2));
                                 });
-                            $('input[name=elldtpMinute]', datepicker)
+                            $('input[name=elldtpMinute]', datePicker)
                                 .bind('keydown', function(e){
                                     if (e.keyCode==38) {
-                                        nextMinute(datepicker);
+                                        nextMinute(datePicker);
                                         return false;
                                     } else if (e.keyCode==40) {
-                                        prevMinute(datepicker);
+                                        prevMinute(datePicker);
                                         return false;
                                     }
                                 })
@@ -375,75 +372,75 @@
                                     $(this).val(('0'+mm).substr(-2));
                                 });
                         }
-                        $('span.elldtp-prevMonth', datepicker).bind('click',
+                        $('span.elldtp-prevMonth', datePicker).bind('click',
                             function (e) {
-                                var mo = $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex;//номер в списке выбранного(текущего) месяца (0-11)
-                                var yr = $('select[name=elldtpYear]', datepicker).get(0).selectedIndex;//номерв в списке выбранный года (с 0)
-                                var yrs = $('select[name=elldtpYear] option', datepicker).length;//кол-во годов в календаре
+                                var mo = $('select[name=elldtpMonth]', datePicker).get(0).selectedIndex;//номер в списке выбранного(текущего) месяца (0-11)
+                                var yr = $('select[name=elldtpYear]', datePicker).get(0).selectedIndex;//номерв в списке выбранный года (с 0)
+                                var yrs = $('select[name=elldtpYear] option', datePicker).length;//кол-во годов в календаре
                                 if ( mo==0 && yr>0) {
                                     yr--;
                                     mo = 11;
-                                    $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex = 11;
-                                    $('select[name=elldtpYear]', datepicker).get(0).selectedIndex = yr;
+                                    $('select[name=elldtpMonth]', datePicker).get(0).selectedIndex = 11;
+                                    $('select[name=elldtpYear]', datePicker).get(0).selectedIndex = yr;
                                 } else {
                                     mo--;
-                                    $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex = mo;
+                                    $('select[name=elldtpMonth]', datePicker).get(0).selectedIndex = mo;
                                 }
-                                loadMonth(e, $this, datepicker);
+                                loadMonth(e, $this, datePicker);
                             }
                         );
-                        $('span.elldtp-nextMonth', datepicker).bind('click',
+                        $('span.elldtp-nextMonth', datePicker).bind('click',
                             function (e) {
-                                var mo = $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex;//номер в списке выбранного(текущего) месяца (0-11)
-                                var yr = $('select[name=elldtpYear]', datepicker).get(0).selectedIndex;//номерв в списке выбранный года (с 0)
-                                var yrs = $('select[name=elldtpYear] option', datepicker).length;//кол-во годов в календаре
+                                var mo = $('select[name=elldtpMonth]', datePicker).get(0).selectedIndex;//номер в списке выбранного(текущего) месяца (0-11)
+                                var yr = $('select[name=elldtpYear]', datePicker).get(0).selectedIndex;//номерв в списке выбранный года (с 0)
+                                var yrs = $('select[name=elldtpYear] option', datePicker).length;//кол-во годов в календаре
                                 if (11==mo && yr<yrs-1) {
                                     yr++;
                                     mo = 0;
-                                    $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex = 0;
-                                    $('select[name=elldtpYear]', datepicker).get(0).selectedIndex = yr;
+                                    $('select[name=elldtpMonth]', datePicker).get(0).selectedIndex = 0;
+                                    $('select[name=elldtpYear]', datePicker).get(0).selectedIndex = yr;
                                 } else {
                                     mo++;
-                                    $('select[name=elldtpMonth]', datepicker).get(0).selectedIndex = mo;
+                                    $('select[name=elldtpMonth]', datePicker).get(0).selectedIndex = mo;
                                 }
-                                loadMonth(e, $this, datepicker);
+                                loadMonth(e, $this, datePicker);
                             }
                         );
                         var setAndClose = function () {
-                            var dt=$.data(datepicker, 'ellDatepicker').chosenDate;
+                            var dt=$.data(datePicker, 'ellDatepicker').chosenDate;
                             if (dt) {
                                 dt.setMinutes(
-                                    opts.timepicker
-                                        ? $('input[name=elldtpMinute]', datepicker).val()
+                                    opts.timePicker
+                                        ? $('input[name=elldtpMinute]', datePicker).val()
                                         : 0
                                 );
                                 dt.setHours(
-                                    opts.timepicker
-                                        ? $('input[name=elldtpHour]', datepicker).val()
+                                    opts.timePicker
+                                        ? $('input[name=elldtpHour]', datePicker).val()
                                         : 0
                                 );
                             }
-                            closeIt($this, datepicker, dt);
+                            closeIt($this, datePicker, dt);
                         }
-                        $('span.elldtp-ok', datepicker).bind('click', setAndClose);
-                        $('tbody', datepicker).delegate('td.elldtp-date', 'dblclick', setAndClose);
+                        $('span.elldtp-ok', datePicker).bind('click', setAndClose);
+                        $('tbody', datePicker).delegate('td.elldtp-date', 'dblclick', setAndClose);
                         $(document).bind('click.ellDatepicker', function(e){
                                 if (e.target!==$this.get(0) && !$(e.target).closest('table.elldatepicker').length)
-                                    closeIt($this, datepicker);
+                                    closeIt($this, datePicker);
                             }
                         );
-                        $('tbody', datepicker).delegate('td.elldtp-date', 'click', function () {
-                                $('td.elldtp-chosen', datepicker).removeClass('elldtp-chosen');
+                        $('tbody', datePicker).delegate('td.elldtp-date', 'click', function () {
+                                $('td.elldtp-chosen', datePicker).removeClass('elldtp-chosen');
                                 $(this).addClass('elldtp-chosen');
-                                var chosenDateObj = new Date($('select[name=elldtpYear]', datepicker).val(), $('select[name=elldtpMonth]', datepicker).val(), $(this).text());
-                                $.data(datepicker, 'ellDatepicker',{chosenDate:chosenDateObj});
+                                var chosenDateObj = new Date($('select[name=elldtpYear]', datePicker).val(), $('select[name=elldtpMonth]', datePicker).val(), $(this).text());
+                                $.data(datePicker, 'ellDatepicker',{chosenDate:chosenDateObj});
                                 if (opts.chooseOneClick) {
                                     setAndClose();
                                 }
                             }
                         );
                         // заполнение календаря
-                        loadMonth(null, $this, datepicker, chosendate||today);
+                        loadMonth(null, $this, datePicker, chosenDate||today);
                     }
                 });
             }
@@ -490,14 +487,14 @@
     /*установки по умолчанию*/
     $.fn.ellDatepicker.defaults = {
         // выбранная дата - строка в формате /^\d{1,2}\/\d{1,2}\/\d{2}|\d{4}$/
-        chosendate: null,
+        chosenDate: null,
         // даты начала/конца календаря - строки в формате /^\d{1,2}\/\d{1,2}\/\d{2}|\d{4}$/
-        startdate: today.getFullYear(),
-        enddate: today.getFullYear() + 1,
+        startDate: today.getFullYear(),
+        endDate: today.getFullYear() + 1,
         // сдвиг относительно элемента который вызывает датапикер в пикселах
-        x: 0,
-        y: 0,
-        timepicker: true,
+        offsetX: 0,
+        offsetY: 0,
+        timePicker: true,
         minuteInterval: 5,
         //одновременно показывать только один календарь, а ранее открытый если есть закрывать как cancel
         onlyOne: true,
