@@ -65,7 +65,7 @@ table.elldatepicker td.elldtp-hover{
     cursor: pointer;
 }
 table.elldatepicker td.elldtp-chosen {
-    background: rgb(66, 104, 184);
+    background: #2f73cd;
     color: #fff;
     font-weight: bold;
 }
@@ -78,7 +78,7 @@ table.elldatepicker td.elldtp-today {
     font-weight: bold;
 }
 table.elldatepicker td.elldtp-today.elldtp-chosen{
-    color: rgb(66, 104, 184);
+    color: rgb(151, 218, 255);
     font-weight: bold;
 }
 table.elldatepicker td.elldtp-disabled, table.elldatepicker td.elldtp-disabled.elldtp-hover {
