@@ -6,23 +6,26 @@
  *
  * @author Maksim (EllRion) Platonov <ellrion@web-leaders.ru> <ellrion11@wgmail.com>
  * @version	0.2.4 [02.11.2012]
- **/
+ */
 (function($) {
-    var today = new Date();
-    var months = ['Янв.', 'Февр.', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.'];
-    var monthLengths = [31,28,31,30,31,30,31,31,30,31,30,31];
-    var days=['П', 'В', 'С', 'Ч', 'П', 'С', 'В'];
-    var dateRegEx = /^\d{1,2}\/\d{1,2}\/\d{2}|\d{4} \d{1,2}:\d{1,2}$/;
-    var yearRegEx = /^\d{4,4}$/;
+    var
+        today           = new Date()
+        , months        = ['Янв.', 'Февр.', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.']
+        , monthLengths  = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        , days          = ['П', 'В', 'С', 'Ч', 'П', 'С', 'В']
+        , dateRegEx     = /^\d{1,2}\/\d{1,2}\/\d{2}|\d{4} \d{1,2}:\d{1,2}$/
+        , yearRegEx     = /^\d{4,4}$/
+    ;
 
-    $.fn.ellDatepicker = function(options) {
-        /*заполняем опции из установок по умолчанию и переданных пораметров*/
+    $.fn.datepicker = function(options) {
+
         var opts = $.extend({}, $.fn.ellDatepicker.defaults, options);
 
-        /*извлекаем из начальной и конечной дат календаря, начальный и конечный год*/
         function setupYearRange () {
-            var startYear, endYear;
-            // начальный год
+            var
+                startYear
+                , endYear
+            ;
             if (opts.startDate.constructor == Date) {
                 startYear = opts.startDate.getFullYear();
             } else if (opts.startDate) {
@@ -58,14 +61,11 @@
 
         setupYearRange();
 
-        /*создание HTML datepicker'а в виде таблицы*/
         function newDatepickerHTML () {
-            // создаём структуру таблицы календаря
             var table = $('<table class="elldatepicker" cellpadding="0" cellspacing="0"></table>');
             table.append('<thead></thead>');
             table.append('<tfoot></tfoot>');
             table.append('<tbody></tbody>');
-            //шапка календая с дополнительными кнопками
             $('thead', table)
                 .append(
                     '<tr><td colspan="2"><span class="elldtp-cancel elldtp-btn">Отмена</span></td>'+
@@ -447,8 +447,6 @@
         });
     };
 
-    /*формат ввода*/
-    //преобразует текстовое представление по указанному формату к формату понятному JS
     $.fn.ellDatepicker.formatInputDate = function (dateStr, withTime) {
         var tmpDateStr = $.trim(dateStr);
         var dateExp = /^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/;
@@ -463,8 +461,6 @@
             return false;
     };
 
-    /*формат вывода*/
-    //преобразует объект даты в текстовое представление
     $.fn.ellDatepicker.formatOutputDate = function (dateObj, withTime) {
         var mm = (dateObj.getMonth()+1);
         mm = mm<10 ? '0'+mm : mm;
@@ -484,24 +480,19 @@
         }
     };
 
-    /*установки по умолчанию*/
     $.fn.ellDatepicker.defaults = {
-        // выбранная дата - строка в формате /^\d{1,2}\/\d{1,2}\/\d{2}|\d{4}$/
-        chosenDate: null,
-        // даты начала/конца календаря - строки в формате /^\d{1,2}\/\d{1,2}\/\d{2}|\d{4}$/
-        startDate: today.getFullYear(),
-        endDate: today.getFullYear() + 1,
-        // сдвиг относительно элемента который вызывает датапикер в пикселах
-        offsetX: 0,
-        offsetY: 0,
-        timePicker: true,
-        minuteInterval: 5,
-        //одновременно показывать только один календарь, а ранее открытый если есть закрывать как cancel
-        onlyOne: true,
-        //по каким событиям элемента показывается календарь
-        eventsActivate: 'click focus',
-        //eventsClose: true
-        btnOk: true,
-        chooseOneClick: false
+        chosenDate:          null
+        , startDate:         today.getFullYear()
+        , endDate:           today.getFullYear() + 1
+        , offsetX:           0
+        , offsetY:           0
+        , timePicker:        true
+        , minuteInterval:    5
+        , onlyOne:           true
+        , eventsActivate:    'click focus'
+        , btnOk:             true
+        , chooseOneClick:    false
+        , monthsList:        null
     };
+
 })(jQuery);
