@@ -1,4 +1,4 @@
-table.elldatepicker {
+table.elldtp {
     font-family: Courier New, Courier New, monospace;
     font-weight: normal;
     font-size: 14px;
@@ -7,13 +7,13 @@ table.elldatepicker {
     border-collapse: separate;
     border-spacing: 2px;
 }
-table.elldatepicker th {
+table.elldtp th {
     background: #333;
     color: #fff;
     font-weight: bold;
     padding: 3px 5px;
 }
-table.elldatepicker td {
+table.elldtp td {
     background: #ccc;
     color: #000;
     padding: 3px 5px;
@@ -21,69 +21,69 @@ table.elldatepicker td {
     height: 18px;
     width: 18px;
 }
-table.elldatepicker .elldtp-btn {
+table.elldtp .elldtp-btn {
     font-size: 12px;
     cursor: pointer;
     display: block;
 }
-table.elldatepicker span.elldtp-nextMonth,
-table.elldatepicker span.elldtp-prevMonth {
+table.elldtp span.elldtp-nextMonth,
+table.elldtp span.elldtp-prevMonth {
     font-size: 25px;
     display: inline-block;
 }
-table.elldatepicker span.elldtp-nextHour,
-table.elldatepicker span.elldtp-prevHour,
-table.elldatepicker span.elldtp-nextMinute,
-table.elldatepicker span.elldtp-prevMinute
+table.elldtp span.elldtp-nextHour,
+table.elldtp span.elldtp-prevHour,
+table.elldtp span.elldtp-nextMinute,
+table.elldtp span.elldtp-prevMinute
 {
     font-size: 14px;
     display: block;
 }
-table.elldatepicker span.elldtp-nextHour,
-table.elldatepicker span.elldtp-nextMinute
+table.elldtp span.elldtp-nextHour,
+table.elldtp span.elldtp-nextMinute
 {
     margin-top: -3px;
 }
-table.elldatepicker span.elldtp-controlsHour,
-table.elldatepicker span.elldtp-controlsMinute
+table.elldtp span.elldtp-controlsHour,
+table.elldtp span.elldtp-controlsMinute
 {
     display: inline-block;
     margin-left: 5px;
     vertical-align: middle;
 }
-table.elldatepicker input[name="elldtpHour"],
-table.elldatepicker input[name="elldtpMinute"]
+table.elldtp input[name="elldtpHour"],
+table.elldtp input[name="elldtpMinute"]
 {
     vertical-align: middle;
 }
-table.elldatepicker td.elldtp-chosen {
+table.elldtp td.elldtp-chosen {
     background: #7CB842;
     color: #fff;
     font-weight: bold;
 }
-table.elldatepicker td.elldtp-today {
+table.elldtp td.elldtp-today {
     color: blue;
     font-weight: bold;
 }
-table.elldatepicker td.elldtp-chosen.elldtp-hover {
+table.elldtp td.elldtp-chosen.elldtp-hover {
     background: #96c458;
     color: #fff;
 }
-table.elldatepicker td.elldtp-hover{
+table.elldtp td.elldtp-hover{
     background: #fff;
     color: #000;
     cursor: pointer;
 }
-table.elldatepicker td.elldtp-disabled, table.elldatepicker td.elldtp-disabled.elldtp-hover {
+table.elldtp td.elldtp-disabled, table.elldtp td.elldtp-disabled.elldtp-hover {
     background: #bbb;
     color: #888;
 }
-table.elldatepicker td.elldtp-date-prevmonth, table.elldatepicker td.elldtp-date-nextmonth {
+table.elldtp td.elldtp-date-prevmonth, table.elldtp td.elldtp-date-nextmonth {
     color: #888;
 }
-table.elldatepicker td.elldtp-unselectable,
-table.elldatepicker td.elldtp-unselectable:hover,
-table.elldatepicker td.elldtp-unselectable.elldtp-hover {
+table.elldtp td.elldtp-unselectable,
+table.elldtp td.elldtp-unselectable:hover,
+table.elldtp td.elldtp-unselectable.elldtp-hover {
     background: #bbb;
     color: #888;
 }

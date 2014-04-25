@@ -19,7 +19,7 @@
 
     $.fn.datepicker = function(options) {
 
-        var opts = $.extend({}, $.fn.ellDatepicker.defaults, options);
+        var opts = $.extend({}, $.fn.datepicker.defaults, options);
 
         function setupYearRange () {
             var
@@ -62,7 +62,7 @@
         setupYearRange();
 
         function newDatepickerHTML () {
-            var table = $('<table class="elldatepicker" cellpadding="0" cellspacing="0"></table>');
+            var table = $('<table class="elldtp" cellpadding="0" cellspacing="0"></table>');
             table.append('<thead></thead>');
             table.append('<tfoot></tfoot>');
             table.append('<tbody></tbody>');
@@ -175,7 +175,7 @@
                 var endDate = opts.endDate.getDate();
             }
             //текущая выбранная дата
-            chosendate = $.data(datepicker, 'ellDatepicker').chosenDate;
+            chosendate = $.data(datepicker, 'elldtp').chosenDate;
             // отчищаем прошлые значения ячеек календаря
             var cells = $('tbody td', datepicker).empty().removeClass('elldtp-date elldtp-date-prevmonth elldtp-date-nextmonth elldtp-chosen elldtp-today elldtp-disabled');
             // заполнение ячеек календаря датами текущего месяца
@@ -261,22 +261,22 @@
         function closeIt (el, datepicker, dateObj) {
             //дата передана, значит устанавливаем её
             if (dateObj && dateObj.constructor == Date) {
-                el.val($.fn.ellDatepicker.formatOutputDate(dateObj, opts.timePicker));
-                $.data(el.get(0), 'ellDatepicker', { hasDatepicker : false, chosenDate: dateObj });
+                el.val($.fn.datepicker.formatOutputDate(dateObj, opts.timePicker));
+                $.data(el.get(0), 'elldtp', { hasDatepicker : false, chosenDate: dateObj });
             }
             //дата задана как пустая строка, значит затераем пораметры (clear)
             else if (dateObj==='') {
                 el.val('');
-                $.data(el.get(0), 'ellDatepicker', { hasDatepicker : false });
+                $.data(el.get(0), 'elldtp', { hasDatepicker : false });
             }
             //дата не передана или передана как null, означает не менять предыдущее установленное значение
             else if (dateObj==null) {
-                $.data(el.get(0), 'ellDatepicker', $.extend($.data(el.get(0), 'ellDatepicker'), { hasDatepicker : false }));
+                $.data(el.get(0), 'elldtp', $.extend($.data(el.get(0), 'elldtp'), { hasDatepicker : false }));
             }
             //удаление календаря
             datepicker.remove();
             datepicker = null;
-            $(document).unbind('click.ellDatepicker');
+            $(document).unbind('click.datepicker');
         }
         //--------------------------------------------
 
@@ -284,21 +284,21 @@
         return this.each(function() { // перебераем все элементы на которые "навешивают" плагин
             if ($(this).is('input') && 'text'==$(this).attr('type')) {//плагин работает только для input[type="text"]
                 var datePicker;
-                $.data($(this).get(0), 'ellDatepicker', { hasDatepicker : false });
+                $.data($(this).get(0), 'elldtp', { hasDatepicker : false });
                 // навешиваем обработчик клика. который будет открываться datapiker(если ещё не открыт)
                 $(this).bind(opts.eventsActivate, function (e) {
                     var $this = $(e.target);//элемент вызвавший календарь
-                    if ($.data($this.get(0), 'ellDatepicker').hasDatepicker == false) {
+                    if ($.data($this.get(0), 'elldtp').hasDatepicker == false) {
                         //закрываем если нужно ранее открытые календари
                         if (opts.onlyOne) {
-                            var oldDP = $('body>table.elldatepicker');
+                            var oldDP = $('body>table.elldtp');
                             if (oldDP.length) {
                                 $('span.elldtp-cancel',oldDP).trigger('click');
                             }
                         }
-                        var data=$.data($this.get(0), 'ellDatepicker');
+                        var data=$.data($this.get(0), 'elldtp');
                         // запоминаем что datePicker уже вызван
-                        $.data($this.get(0), 'ellDatepicker', $.extend(data, { hasDatepicker : true}));
+                        $.data($this.get(0), 'elldtp', $.extend(data, { hasDatepicker : true}));
                         // генерация и вставка в DOM HTML кода календаря
                         datePicker = newDatepickerHTML();
                         $('body').append(datePicker);
@@ -311,7 +311,7 @@
                         if (data.chosenDate) {
                             chosenDate = data.chosenDate;
                         } else {
-                            var initialDate = $.fn.ellDatepicker.formatInputDate($this.val(), opts.timePicker);
+                            var initialDate = $.fn.datepicker.formatInputDate($this.val(), opts.timePicker);
                             if (initialDate && dateRegEx.test(initialDate)) {
                                 chosenDate = new Date(initialDate);
                             } else if (opts.chosenDate && opts.chosenDate.constructor == Date) {
@@ -320,7 +320,7 @@
                                 chosenDate = new Date(opts.chosenDate);
                             }
                         }
-                        $.data(datePicker, 'ellDatepicker', {'chosenDate': chosenDate} );
+                        $.data(datePicker, 'elldtp', {'chosenDate': chosenDate} );
                         // нахождение и установка позиции календаря на странице
                         var x = (isNaN(parseInt(opts.offsetX,10)) ? 0 : parseInt(opts.offsetX,10)) + $this.offset().left;//+$this.outerWidth()
                         var y = (isNaN(parseInt(opts.offsetY,10)) ? 0 : parseInt(opts.offsetY,10)) + $this.offset().top;
@@ -407,7 +407,7 @@
                             }
                         );
                         var setAndClose = function () {
-                            var dt=$.data(datePicker, 'ellDatepicker').chosenDate;
+                            var dt=$.data(datePicker, 'elldtp').chosenDate;
                             if (dt) {
                                 dt.setMinutes(
                                     opts.timePicker
@@ -424,8 +424,8 @@
                         }
                         $('span.elldtp-ok', datePicker).bind('click', setAndClose);
                         $('tbody', datePicker).delegate('td.elldtp-date', 'dblclick', setAndClose);
-                        $(document).bind('click.ellDatepicker', function(e){
-                                if (e.target!==$this.get(0) && !$(e.target).closest('table.elldatepicker').length)
+                        $(document).bind('click.datepicker', function(e){
+                                if (e.target!==$this.get(0) && !$(e.target).closest('table.elldtp').length)
                                     closeIt($this, datePicker);
                             }
                         );
@@ -433,7 +433,7 @@
                                 $('td.elldtp-chosen', datePicker).removeClass('elldtp-chosen');
                                 $(this).addClass('elldtp-chosen');
                                 var chosenDateObj = new Date($('select[name=elldtpYear]', datePicker).val(), $('select[name=elldtpMonth]', datePicker).val(), $(this).text());
-                                $.data(datePicker, 'ellDatepicker',{chosenDate:chosenDateObj});
+                                $.data(datePicker, 'elldtp',{chosenDate:chosenDateObj});
                                 if (opts.chooseOneClick) {
                                     setAndClose();
                                 }
@@ -447,7 +447,7 @@
         });
     };
 
-    $.fn.ellDatepicker.formatInputDate = function (dateStr, withTime) {
+    $.fn.datepicker.formatInputDate = function (dateStr, withTime) {
         var tmpDateStr = $.trim(dateStr);
         var dateExp = /^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/;
         var formatedStr = '$2/$1/$3';
@@ -461,7 +461,7 @@
             return false;
     };
 
-    $.fn.ellDatepicker.formatOutputDate = function (dateObj, withTime) {
+    $.fn.datepicker.formatOutputDate = function (dateObj, withTime) {
         var mm = (dateObj.getMonth()+1);
         mm = mm<10 ? '0'+mm : mm;
         var dd = dateObj.getDate();
@@ -480,7 +480,7 @@
         }
     };
 
-    $.fn.ellDatepicker.defaults = {
+    $.fn.datepicker.defaults = {
         chosenDate:          null
         , startDate:         today.getFullYear()
         , endDate:           today.getFullYear() + 1
