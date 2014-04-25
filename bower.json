@@ -1,7 +1,7 @@
 {
     "name": "ellrion/datepicker",
     "version": "0.0.1",
-    "main": "src/ellrion_datepicker.jquery.js",
+    "main": "src/ellrion-datepicker.jquery.js",
     "dependencies": {
         "jquery": "jquery#~1"
     }
