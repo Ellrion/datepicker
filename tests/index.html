@@ -6,25 +6,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ellrion's Date Picker JQuery plugin</title>
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css">-->
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <link rel="stylesheet" href="../src/css/simple.css">
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <link rel="stylesheet" href="../src/css/ellrion-datepicker.css">
+    <style type="text/css">
+        body {
+            background-color: dimgrey;
+        }
+        .bage {
+            display: inline-block;
+            background-color: coral;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 6px;
+            box-shadow: 1px 1px 2px black;
+            padding: 2px 4px;
+            text-shadow: 1px 1px 2px black;
+        }
+    </style>
 </head>
 <body>
-
 <div class="container">
-    <input type="text" data-toggle="datepicker" />
-</div>
+    <h2>Datepicker test</h2>
+    <div>
+        <span class="bage">1</span>
+        <input type="text" data-toggle="datepicker" />
+    </div>
+    <div>
+        <span class="bage">2</span>
 
+        <input type="text" data-toggle="datepicker-2" />
+    </div>
+    <hr/>
+    <table class="elldtp" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td colspan="2"><span class="elldtp-cancel elldtp-btn">Отмена</span></td>
+            <td colspan="3"><span class="elldtp-now elldtp-btn">Сегодня</span></td>
+            <td colspan="2"><span class="elldtp-clear elldtp-btn">Очистить</span></td>
+        </tr>
+        <tr class="elldtp-controls">
+            <th colspan="7">
+                <span class="elldtp-prevMonth elldtp-btn">«</span>
+                <select name="elldtpMonth">
+                    <option value="0">Янв.</option>
+                    <option value="1">Февр.</option>
+                    <option value="2">Март</option>
+                    <option value="3">Апр</option>
+                    <option value="4">Май</option>
+                    <option value="5">Июнь</option>
+                    <option value="6">Июль</option>
+                    <option value="7">Авг.</option>
+                    <option value="8">Сент.</option>
+                    <option value="9">Окт.</option>
+                    <option value="10">Нояб.</option>
+                    <option value="11">Дек.</option>
+                </select>
+                <select name="elldtpYear">
+                    <option>2014</option>
+                    <option>2015</option>
+                </select>
+                <span class="elldtp-nextMonth elldtp-btn">»</span>
+            </th>
+        </tr>
+        <tr class="elldtp-days">
+            <th>П</th>
+            <th>В</th>
+            <th>С</th>
+            <th>Ч</th>
+            <th>П</th>
+            <th>С</th>
+            <th>В</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td colspan="7"><span class="elldtp-ok elldtp-btn">Ок</span></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr>
+            <td class="elldtp-date-prevmonth">31</td>
+            <td class="elldtp-date">1</td>
+            <td class="elldtp-date">2</td>
+            <td class="elldtp-date">3</td>
+            <td class="elldtp-date">4</td>
+            <td class="elldtp-date">5</td>
+            <td class="elldtp-date">6</td>
+        </tr>
+        <tr>
+            <td class="elldtp-date">7</td>
+            <td class="elldtp-date">8</td>
+            <td class="elldtp-date">9</td>
+            <td class="elldtp-date">10</td>
+            <td class="elldtp-date">11</td>
+            <td class="elldtp-date">12</td>
+            <td class="elldtp-date">13</td>
+        </tr>
+        <tr>
+            <td class="elldtp-date">14</td>
+            <td class="elldtp-date">15</td>
+            <td class="elldtp-date">16</td>
+            <td class="elldtp-date">17</td>
+            <td class="elldtp-date">18</td>
+            <td class="elldtp-date">19</td>
+            <td class="elldtp-date">20</td>
+        </tr>
+        <tr>
+            <td class="elldtp-date">21</td>
+            <td class="elldtp-date">22</td>
+            <td class="elldtp-date">23</td>
+            <td class="elldtp-date">24</td>
+            <td class="elldtp-date elldtp-today">25</td>
+            <td class="elldtp-date">26</td>
+            <td class="elldtp-date">27</td>
+        </tr>
+        <tr>
+            <td class="elldtp-date">28</td>
+            <td class="elldtp-date">29</td>
+            <td class="elldtp-date">30</td>
+            <td class="elldtp-date-nextmonth">1</td>
+            <td class="elldtp-date-nextmonth">2</td>
+            <td class="elldtp-date-nextmonth">3</td>
+            <td class="elldtp-date-nextmonth">4</td>
+        </tr>
+        <tr>
+            <td class="elldtp-date-nextmonth">5</td>
+            <td class="elldtp-date-nextmonth">6</td>
+            <td class="elldtp-date-nextmonth">7</td>
+            <td class="elldtp-date-nextmonth">8</td>
+            <td class="elldtp-date-nextmonth">9</td>
+            <td class="elldtp-date-nextmonth">10</td>
+            <td class="elldtp-date-nextmonth">11</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="../src/ellrion-datepicker.jquery.js"></script>
 <script type="text/javascript">
     $(function(){
         $('input[data-toggle="datepicker"]').datepicker();
+        $('input[data-toggle="datepicker-2"]').datepicker({timePicker: false});
     });
 </script>
 </body>

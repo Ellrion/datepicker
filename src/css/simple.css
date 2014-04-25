@@ -7,19 +7,21 @@ table.elldtp {
     border-collapse: separate;
     border-spacing: 2px;
 }
-table.elldtp th {
-    background: #333;
-    color: #fff;
-    font-weight: bold;
-    padding: 3px 5px;
-}
+table.elldtp th,
 table.elldtp td {
-    background: #ccc;
-    color: #000;
     padding: 3px 5px;
     text-align: center;
     height: 18px;
     width: 18px;
+}
+table.elldtp th {
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+}
+table.elldtp td {
+    background: #ccc;
+    color: #000;
 }
 table.elldtp .elldtp-btn {
     font-size: 12px;
@@ -57,16 +59,16 @@ table.elldtp input[name="elldtpMinute"]
     vertical-align: middle;
 }
 table.elldtp td.elldtp-chosen {
-    background: #7CB842;
+    background: #474747;
     color: #fff;
     font-weight: bold;
 }
 table.elldtp td.elldtp-today {
-    color: blue;
+    color: #ffffff;
     font-weight: bold;
 }
 table.elldtp td.elldtp-chosen.elldtp-hover {
-    background: #96c458;
+    background: #474747;
     color: #fff;
 }
 table.elldtp td.elldtp-hover{

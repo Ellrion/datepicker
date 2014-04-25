@@ -17,7 +17,7 @@
         , yearRegEx     = /^\d{4,4}$/
     ;
 
-    $.fn.datepicker = function(options) {
+    $.fn.datepicker = function (options) {
 
         var opts = $.extend({}, $.fn.datepicker.defaults, options);
 
@@ -481,18 +481,22 @@
     };
 
     $.fn.datepicker.defaults = {
-        chosenDate:          null
-        , startDate:         today.getFullYear()
-        , endDate:           today.getFullYear() + 1
-        , offsetX:           0
-        , offsetY:           0
-        , timePicker:        true
-        , minuteInterval:    5
-        , onlyOne:           true
-        , eventsActivate:    'click focus'
-        , btnOk:             true
-        , chooseOneClick:    false
-        , monthsList:        null
+        chosenDate:         null
+        , startDate:        today.getFullYear()
+        , endDate:          today.getFullYear() + 1
+        , offsetX:          0
+        , offsetY:          0
+        , timePicker:       true
+        , minuteInterval:   5
+        , onlyOne:          true
+        , eventsActivate:   'click focus'
+        , btnOk:            false
+        , chooseOneClick:   false
+        , monthsList:       null
+        , okBtnCallback:    function () {
+
+            }
+        ,
     };
 
 })(jQuery);
